@@ -6,7 +6,7 @@ const   express         = require("express"),
         mongoose        = require("mongoose"),
 		methodOverride  = require("method-override");
 
-const   indexRoutes     = require("./routes/index");
+const   indexRoutes     = require("./routes/index"),
         todoRoutes      = require("./routes/todoitems");
 
 // Express variables
