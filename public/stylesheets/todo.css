@@ -17,18 +17,8 @@
 }
 
 /* Buttons */
-.fa-plus-circle {
-    float: right;
+.buttonHead {
     font-size: 3em;
-}
-
-.fa-undo {
-    float: right;
-    font-size: 3em;
-}
-
-.fa-trash-alt {
-    float: right;
 }
 
 /* List */
@@ -41,6 +31,11 @@ ul {
 /* Severity */
 .prioHigh{
     color: red;
+}
+
+
+.float-right {
+    float: right;
 }
 
 .completed {

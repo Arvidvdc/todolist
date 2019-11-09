@@ -25,5 +25,9 @@ mongoose.connect("mongodb://localhost:27017/todo", { useNewUrlParser: true, useU
 app.use(indexRoutes);
 app.use(todoRoutes);
 
+app.get("*", (req,res)=>{
+    res.render("404");
+});
+
 // listener
 app.listen(3001, ()=>console.log("ToDo started on port 3001"));

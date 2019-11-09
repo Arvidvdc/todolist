@@ -1,7 +1,7 @@
 <% include partials/header %>
 
     <div class="container">
-        <span id="title">Things To Do</span> <i class="fas fa-plus-circle"></i>
+        <span id="title">Things To Do</span> <i class="fas fa-plus-circle buttonHead float-right"></i>
         <hr>
         <ul>
         <% todos.forEach(todo => { %>
@@ -22,12 +22,13 @@
                     <% if (todo.priority === 5){  %>
                         <i class="fas fa-couch"></i>
                     <% } %>
-                    <%= todo.item %><i class="fas fa-trash-alt prioHigh"></i>
+                    <%= todo.item %><i class="fas fa-trash-alt prioHigh float-right"></i>
                 </span>
                 <p><%= todo.description %></p>
             </li>
         <% }); %>
         </ul>
+        <span id="login">LOGIN</span><span class="float-right">LOGOUT</span>
     </div>
 
 <% include partials/footer %>
