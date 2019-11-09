@@ -27,6 +27,10 @@
     font-size: 3em;
 }
 
+.fa-trash-alt {
+    float: right;
+}
+
 /* List */
 ul {
     list-style-type: none;
@@ -37,4 +41,9 @@ ul {
 /* Severity */
 .prioHigh{
     color: red;
+}
+
+.completed {
+    color: gray;
+    text-decoration: line-through;
 }
