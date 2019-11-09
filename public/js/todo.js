@@ -10,27 +10,12 @@ $("ul").on("click", "span", function(){
     $(this).toggleClass("completed");
 });
 
+$("ul").on("dblclick", "span", function(){
+    let url = "/" + $(this).attr("id") +"/edit";
+    window.location.href = url;
+});
+
 $(".fa-trash-alt").click(function() {
     let url = "/delete/" + $(this).parent().attr("id");
     window.location.href = url;
 });
-
-
-
-
-// $("ul").on("dclick", "span", function(){
-//      $.ajax({
-//         url:    "/",
-//         method: "DELETE"
-//     }).done(()=>{
-//         console.log("Deleted");
-//     });
-//     // $(this).parent().fadeOut(500,function() {
-//         $(this).parent().remove();
-//     // });
-    
-//     let id = $(this).attr("id");
-//     // window.location.href = "/" +id +"?_method='DELETE'";
-
-//     event.stopPropagation();
-// });

@@ -2,11 +2,11 @@
 
 <div class="container">
     <span id="title">Delete</span><i class="fas fas fa-undo"></i>
-    <p>Weet je zeker dat je item:<br> 
-    <strong><%= item.item%></strong><br>
-    wil verwijderen?</p>
+    <p>Are you sure you want to delete item:<br>
+        <strong><%= item.item%></strong>
+    </p>
     <form id="delete-form" action="/<%= item._id %>?_method=DELETE" method="POST">
-        <button class="btn btn-danger btn-xs">Verwijderen</button>
+        <button class="btn btn-danger btn-xs">Delete</button>
     </form>
 </div>
 <% include partials/footer %>

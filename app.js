@@ -46,6 +46,28 @@ app.post("/", (req,res)=> {
     });
 });
 
+// Edit
+app.get("/:id/edit", (req,res)=>{
+    Todo.findById(req.params.id, (err,item)=>{
+        if(err){
+            console.log("Find ID to edit error: " + err);
+        } else {
+            res.render("edit", {item: item});
+        };
+    });
+});
+
+// Update
+app.put("/:id", (req,res)=> {
+    Todo.findByIdAndUpdate(req.params.id, req.body.updateTodo,  (err,updatedItem)=>{
+        if(err) {
+            console.log("Update Todo error" + err);
+        } else {
+            res.redirect("/");
+        };
+    });
+});
+
 // Delete
 app.get("/delete/:id", (req,res)=> {
     Todo.findById(req.params.id, (err,item)=>{
