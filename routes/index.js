@@ -10,6 +10,7 @@ router.get("/", isLoggedIn, (req,res)=>{
         if(err) {
             console.log("Route '/' error: " + err)
         } else {
+            console.log(req.user._id)
             res.render("home", { todos: todos });
         };
     });
