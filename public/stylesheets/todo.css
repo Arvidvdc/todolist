@@ -42,3 +42,11 @@ ul {
     color: gray;
     text-decoration: line-through;
 }
+
+.hidden {
+    visibility: hidden;
+}
+.formstyle {
+    width: 100%;
+    margin: 25px auto;
+}

@@ -4,7 +4,7 @@ const express       = require("express"),
 
 // New
 router.get("/new", (req,res)=> {
-    res.render("new");
+    res.render("todo/new");
 });
 
 // Create
@@ -24,7 +24,7 @@ router.get("/:id/edit", (req,res)=>{
         if(err){
             console.log("Find ID to edit error: " + err);
         } else {
-            res.render("edit", {item: item});
+            res.render("todo/edit", {item: item});
         };
     });
 });
@@ -46,7 +46,7 @@ router.get("/delete/:id", (req,res)=> {
         if(err){
             console.log("Find ID to delete error: " + err);
         } else {
-            res.render("delete", {item: item});
+            res.render("todo/delete", {item: item});
         };
     });
 });

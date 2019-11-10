@@ -17,11 +17,21 @@ router.get("/", (req,res)=>{
 
 // Register routes
 router.get("/register", (req,res)=> {
-    res.send("Register route");
+    res.render("Register");
 });
 
 router.post("/register", (req,res)=> {
-    res.send("Register Post-route")
+    let newUser = new User({username: req.body.username, email: req.body.email, role: req.body.role});
+    User.register(newUser, req.body.password , (err, user)=>{
+        if(err) {
+            console.log(err);
+            return res.render("Register")
+        } else {
+            passport.authenticate("local")(req,res, function(){
+                res.redirect("/");
+            });
+        };
+    });
 });
 
 // Log in route
