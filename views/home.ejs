@@ -10,6 +10,18 @@
             <span id="logout" class="float-right">LOGOUT</span>
         <% } %>
         <hr>
+        <% if(error && error.length>0) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+            <hr>
+        <% } %>
+        <% if(success && success.length>0) { %>
+            <div class="alert alert-success" role="alert">
+                <%= success %>
+            </div>
+            <hr>
+        <% } %>
         <ul>
             <% todos.forEach(todo => { %>
                 <% if(currentUser && todo.owner.id.equals(currentUser._id)) { %>

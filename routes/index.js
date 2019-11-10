@@ -10,7 +10,6 @@ router.get("/", isLoggedIn, (req,res)=>{
         if(err) {
             console.log("Route '/' error: " + err)
         } else {
-            console.log(req.user._id)
             res.render("home", { todos: todos });
         };
     });
@@ -50,6 +49,7 @@ router.post("/login", passport.authenticate("local", {
 // Loguit route
 router.get("/logout", function(req, res){
     req.logout();
+    req.flash("success", "You have been logged out.");
     res.redirect("/login");
  });
 
@@ -58,6 +58,7 @@ function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();
     } else {
+        req.flash("error", "You have to be logged in.");
         res.redirect("/login");
     };
 };

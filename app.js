@@ -4,6 +4,7 @@ const   express         = require("express"),
         seedDB          = require("./seeds"),
         Todo            = require("./models/todo"),
         User            = require("./models/user"),
+        flash           = require("connect-flash"),
         passport        = require("passport"),
         LocalStrategy   = require("passport-local"),
         mongoose        = require("mongoose"),
@@ -17,6 +18,7 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
+app.use(flash());
 
 // Passport Configuration
 app.use(require("express-session")({
@@ -39,6 +41,8 @@ mongoose.connect("mongodb://localhost:27017/todo", { useNewUrlParser: true, useU
 //Eigen middleware
 app.use((req,res,next)=>{
     res.locals.currentUser=req.user;
+    res.locals.error = req.flash("error");
+    res.locals.success = req.flash("success");
     next();
 });
 

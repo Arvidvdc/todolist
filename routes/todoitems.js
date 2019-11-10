@@ -16,8 +16,9 @@ router.post("/", isLoggedIn, (req,res)=> {
         newTodo= {item: item, priority: priority, description: description, owner: owner};
     Todo.create(newTodo, (err,newTodo)=>{
         if(err){
-            console.log("Create Todo error: " + err);
+            req.flash("error", err.message);
         } else {
+            req.flash("success", "New item added.");
             res.redirect("/");
         };
     });
@@ -27,7 +28,7 @@ router.post("/", isLoggedIn, (req,res)=> {
 router.get("/:id/edit", isLoggedIn, (req,res)=>{
     Todo.findById(req.params.id, (err,item)=>{
         if(err){
-            console.log("Find ID to edit error: " + err);
+            console.log(err);
         } else {
             res.render("todo/edit", {item: item});
         };
@@ -38,8 +39,9 @@ router.get("/:id/edit", isLoggedIn, (req,res)=>{
 router.put("/:id", isLoggedIn, (req,res)=> {
     Todo.findByIdAndUpdate(req.params.id, req.body.updateTodo,  (err,updatedItem)=>{
         if(err) {
-            console.log("Update Todo error" + err);
+            req.flash("error", err.message);
         } else {
+            req.flash("success", "Item successfully edited.");
             res.redirect("/");
         };
     });
@@ -49,7 +51,7 @@ router.put("/:id", isLoggedIn, (req,res)=> {
 router.get("/delete/:id", isLoggedIn, (req,res)=> {
     Todo.findById(req.params.id, (err,item)=>{
         if(err){
-            console.log("Find ID to delete error: " + err);
+            req.flash("error", err.message);
         } else {
             res.render("todo/delete", {item: item});
         };
@@ -59,8 +61,9 @@ router.get("/delete/:id", isLoggedIn, (req,res)=> {
 router.delete("/:id", isLoggedIn, (req,res)=> {
     Todo.findByIdAndDelete(req.params.id, (err,deletedItem)=>{
         if(err) {
-            console.log("Delete Todo error" + err);
+            req.flash("error", err.message);
         } else {
+            req.flash("Success", "YES YES YES item deleted");
             res.redirect("/");
         };
     });
