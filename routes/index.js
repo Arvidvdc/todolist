@@ -36,7 +36,7 @@ router.post("/register", (req,res)=> {
 
 // Log in route
 router.get("/login", (req,res)=> {
-    res.send("Login route")
+    res.render("Login")
 });
 
 router.post("/login", passport.authenticate("local", {
