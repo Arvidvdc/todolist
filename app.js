@@ -36,6 +36,12 @@ mongoose.connect("mongodb://localhost:27017/todo", { useNewUrlParser: true, useU
 // Filling database
 // seedDB();
 
+//Eigen middleware
+app.use((req,res,next)=>{
+    res.locals.currentUser=req.user;
+    next();
+});
+
 // Routes
 app.use(indexRoutes);
 app.use(todoRoutes);

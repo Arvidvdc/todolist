@@ -19,3 +19,7 @@ $(".fa-trash-alt").click(function() {
     let url = "/delete/" + $(this).parent().attr("id");
     window.location.href = url;
 });
+
+$("#logout").click(function() {
+    window.location.href = "/logout";
+});

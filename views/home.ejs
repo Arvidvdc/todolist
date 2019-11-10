@@ -28,7 +28,12 @@
             </li>
         <% }); %>
         </ul>
-        <span id="login">LOGIN</span><span class="float-right">LOGOUT</span>
+        <% if(!currentUser){ %>
+            <span id="login">LOGIN</span>
+        <% } else { %>
+            <span><strong><%= currentUser.username %></strong></span>
+            <span id="logout" class="float-right">LOGOUT</span>
+        <% } %>
     </div>
 
 <% include partials/footer %>

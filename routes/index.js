@@ -5,7 +5,7 @@ const express       = require("express"),
       User          = require("../models/user");
 
 // Index
-router.get("/", (req,res)=>{
+router.get("/", isLoggedIn, (req,res)=>{
     Todo.find({}).sort("priority").exec((err,todos)=> {
         if(err) {
             console.log("Route '/' error: " + err)
@@ -51,5 +51,14 @@ router.get("/logout", function(req, res){
     req.logout();
     res.redirect("/404");
  });
+
+// Custom middleware
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    } else {
+        res.redirect("/login");
+    };
+};
 
 module.exports = router;

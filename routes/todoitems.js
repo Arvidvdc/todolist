@@ -3,13 +3,18 @@ const express       = require("express"),
       Todo          = require("../models/todo");
 
 // New
-router.get("/new", (req,res)=> {
+router.get("/new", isLoggedIn, (req,res)=> {
     res.render("todo/new");
 });
 
 // Create
-router.post("/", (req,res)=> {
-    Todo.create(req.body.newTodo, (err,newTodo)=>{
+router.post("/", isLoggedIn, (req,res)=> {
+    let item        = req.body.item,
+        priority    = req.body.priority,
+        description = req.body.description,
+        owner       = {id: req.user._id, username: req.user.username},
+        newTodo= {item: item, priority: priority, description: description, owner: owner};
+    Todo.create(newTodo, (err,newTodo)=>{
         if(err){
             console.log("Create Todo error: " + err);
         } else {
@@ -19,7 +24,7 @@ router.post("/", (req,res)=> {
 });
 
 // Edit
-router.get("/:id/edit", (req,res)=>{
+router.get("/:id/edit", isLoggedIn, (req,res)=>{
     Todo.findById(req.params.id, (err,item)=>{
         if(err){
             console.log("Find ID to edit error: " + err);
@@ -30,7 +35,7 @@ router.get("/:id/edit", (req,res)=>{
 });
 
 // Update
-router.put("/:id", (req,res)=> {
+router.put("/:id", isLoggedIn, (req,res)=> {
     Todo.findByIdAndUpdate(req.params.id, req.body.updateTodo,  (err,updatedItem)=>{
         if(err) {
             console.log("Update Todo error" + err);
@@ -41,7 +46,7 @@ router.put("/:id", (req,res)=> {
 });
 
 // Delete
-router.get("/delete/:id", (req,res)=> {
+router.get("/delete/:id", isLoggedIn, (req,res)=> {
     Todo.findById(req.params.id, (err,item)=>{
         if(err){
             console.log("Find ID to delete error: " + err);
@@ -51,7 +56,7 @@ router.get("/delete/:id", (req,res)=> {
     });
 });
 
-router.delete("/:id", (req,res)=> {
+router.delete("/:id", isLoggedIn, (req,res)=> {
     Todo.findByIdAndDelete(req.params.id, (err,deletedItem)=>{
         if(err) {
             console.log("Delete Todo error" + err);
@@ -60,5 +65,14 @@ router.delete("/:id", (req,res)=> {
         };
     });
 });
+
+// Custom middleware
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    } else {
+        res.redirect("/login");
+    };
+};
 
 module.exports = router;
