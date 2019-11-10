@@ -1,14 +1,15 @@
 const express       = require("express"),
       router        = express.Router(),
-      Todo          = require("../models/todo");
+      Todo          = require("../models/todo"),
+      middleware    = require("../middleware"); 
 
 // New
-router.get("/new", isLoggedIn, (req,res)=> {
+router.get("/new", middleware.isLoggedIn, (req,res)=> {
     res.render("todo/new");
 });
 
 // Create
-router.post("/", isLoggedIn, (req,res)=> {
+router.post("/", middleware.isLoggedIn, (req,res)=> {
     let item        = req.body.item,
         priority    = req.body.priority,
         description = req.body.description,
@@ -25,7 +26,7 @@ router.post("/", isLoggedIn, (req,res)=> {
 });
 
 // Edit
-router.get("/:id/edit", isLoggedIn, (req,res)=>{
+router.get("/:id/edit", middleware.isLoggedIn, (req,res)=>{
     Todo.findById(req.params.id, (err,item)=>{
         if(err){
             console.log(err);
@@ -36,8 +37,8 @@ router.get("/:id/edit", isLoggedIn, (req,res)=>{
 });
 
 // Update
-router.put("/:id", isLoggedIn, (req,res)=> {
-    Todo.findByIdAndUpdate(req.params.id, req.body.updateTodo,  (err,updatedItem)=>{
+router.put("/:id", middleware.isLoggedIn, (req,res)=> {
+    Todo.findByIdAndUpdate(req.params.id, req.body.updateTodo,  (err)=>{
         if(err) {
             req.flash("error", err.message);
         } else {
@@ -48,7 +49,7 @@ router.put("/:id", isLoggedIn, (req,res)=> {
 });
 
 // Delete
-router.get("/delete/:id", isLoggedIn, (req,res)=> {
+router.get("/delete/:id", middleware.isLoggedIn, (req,res)=> {
     Todo.findById(req.params.id, (err,item)=>{
         if(err){
             req.flash("error", err.message);
@@ -58,8 +59,9 @@ router.get("/delete/:id", isLoggedIn, (req,res)=> {
     });
 });
 
-router.delete("/:id", isLoggedIn, (req,res)=> {
-    Todo.findByIdAndDelete(req.params.id, (err,deletedItem)=>{
+// Destroy
+router.delete("/:id", middleware.isLoggedIn, (req,res)=> {
+    Todo.findByIdAndDelete(req.params.id, (err)=>{
         if(err) {
             req.flash("error", err.message);
         } else {
@@ -68,14 +70,5 @@ router.delete("/:id", isLoggedIn, (req,res)=> {
         };
     });
 });
-
-// Custom middleware
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    } else {
-        res.redirect("/login");
-    };
-};
 
 module.exports = router;

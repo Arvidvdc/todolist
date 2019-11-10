@@ -50,7 +50,7 @@ app.use((req,res,next)=>{
 app.use(indexRoutes);
 app.use(todoRoutes);
 
-app.get("*", (req,res)=>{
+app.get("/*", (req,res)=>{
     res.render("404");
 });
 

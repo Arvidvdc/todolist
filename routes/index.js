@@ -2,10 +2,11 @@ const express       = require("express"),
       router        = express.Router(),
       Todo          = require("../models/todo"),
       passport      = require("passport"),
-      User          = require("../models/user");
+      User          = require("../models/user"),
+      middleware    = require("../middleware"); 
 
 // Index
-router.get("/", isLoggedIn, (req,res)=>{
+router.get("/", middleware.isLoggedIn, (req,res)=>{
     Todo.find({}).sort("priority").exec((err,todos)=> {
         if(err) {
             console.log("Route '/' error: " + err)
@@ -25,12 +26,13 @@ router.post("/register", (req,res)=> {
     User.register(newUser, req.body.password , (err, user)=>{
         if(err) {
             console.log(err);
+            req.flash("error", err.message);
             return res.render("Register")
-        } else {
-            passport.authenticate("local")(req,res, function(){
-                res.redirect("/");
-            });
-        };
+        }
+        passport.authenticate("local")(req,res, function(){
+            req.flash("success", "Welcome " + user.username + " Let's get things done");
+            res.redirect("/");
+        });
     });
 });
 
@@ -52,15 +54,5 @@ router.get("/logout", function(req, res){
     req.flash("success", "You have been logged out.");
     res.redirect("/login");
  });
-
-// Custom middleware
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    } else {
-        req.flash("error", "You have to be logged in.");
-        res.redirect("/login");
-    };
-};
 
 module.exports = router;
