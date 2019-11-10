@@ -3,6 +3,13 @@
     <div class="container">
         <span id="title">Things To Do</span> <i class="fas fa-plus-circle buttonHead float-right"></i>
         <hr>
+        <% if(!currentUser){ %>
+            <span id="login">LOGIN</span>
+        <% } else { %>
+            <span><strong><%= currentUser.username %></strong></span>
+            <span id="logout" class="float-right">LOGOUT</span>
+        <% } %>
+        <hr>
         <ul>
         <% todos.forEach(todo => { %>
             <li>
@@ -28,12 +35,6 @@
             </li>
         <% }); %>
         </ul>
-        <% if(!currentUser){ %>
-            <span id="login">LOGIN</span>
-        <% } else { %>
-            <span><strong><%= currentUser.username %></strong></span>
-            <span id="logout" class="float-right">LOGOUT</span>
-        <% } %>
     </div>
 
 <% include partials/footer %>

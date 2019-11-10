@@ -49,7 +49,7 @@ router.post("/login", passport.authenticate("local", {
 // Loguit route
 router.get("/logout", function(req, res){
     req.logout();
-    res.redirect("/404");
+    res.redirect("/login");
  });
 
 // Custom middleware
