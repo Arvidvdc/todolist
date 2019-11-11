@@ -20,10 +20,12 @@
 /* Buttons */
 .buttonHead {
     font-size: 3em;
+    cursor:pointer;
 }
 
 .float-right {
     float: right;
+    cursor:pointer;
 }
 
 /* List */
@@ -52,18 +54,4 @@ ul {
 .formstyle {
     width: 100%;
     margin: 25px auto;
-}
-
-/* Show the description */
-p {
-    height: 0;
-    opacity: 0;
-    margin: 0;
-    transition: 0.2s linear;
-}
-
-li:hover p {
-    height: 40;
-    margin-bottom: 2rem;
-    opacity: 1.0;
 }

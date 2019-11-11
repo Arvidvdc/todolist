@@ -6,10 +6,6 @@ $(".fa-undo").click(function() {
     window.location.href = "/";
 });
 
-$("ul").on("click", "span", function(){
-    $(this).toggleClass("completed");
-});
-
 $("ul").on("dblclick", "span", function(){
     let url = "/" + $(this).attr("id") +"/edit";
     window.location.href = url;
