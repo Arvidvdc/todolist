@@ -4,10 +4,10 @@
         <span id="title">Things To Do</span> <i class="fas fa-plus-circle buttonHead float-right"></i>
         <hr>
         <% if(!currentUser){ %>
-            <span id="login">LOGIN</span>
+            <span class="user">LOGIN</span>
         <% } else { %>
-            <span><strong><%= currentUser.username %></strong></span>
-            <span id="logout" class="float-right">LOGOUT</span>
+            <span class="user"><%= currentUser.username %></span>
+            <span id="logout" class="float-right user">LOGOUT</span>
         <% } %>
         <hr>
         <% if(error && error.length>0) { %>
@@ -26,7 +26,7 @@
             <% todos.forEach(todo => { %>
                 <% if(currentUser && todo.owner.id.equals(currentUser._id)) { %>
                     <li>
-                        <span id="<%= todo._id %>">
+                        <span class="task" id="<%= todo._id %>">
                             <% if (todo.priority === 1){  %>
                                 <i class="fas fa-radiation-alt  prioHigh"></i>
                             <% } %>
