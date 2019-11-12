@@ -3,30 +3,11 @@
     <div class="container">
         <span id="title">Things To Do</span> <i class="fas fa-plus-circle buttonHead float-right"></i>
         <hr>
-        <% if(!currentUser){ %>
-            <span class="user">LOGIN</span>
-        <% } else { %>
-            <span class="user"><%= currentUser.username %></span>
-            <span id="logout" class="float-right user">LOGOUT</span>
-        <% } %>
-        <hr>
-        <% if(error && error.length>0) { %>
-            <div class="alert alert-danger" role="alert">
-                <%= error %>
-            </div>
-            <hr>
-        <% } %>
-        <% if(success && success.length>0) { %>
-            <div class="alert alert-success" role="alert">
-                <%= success %>
-            </div>
-            <hr>
-        <% } %>
         <ul>
             <% todos.forEach(todo => { %>
                 <% if(currentUser && todo.owner.id.equals(currentUser._id)) { %>
                     <li>
-                        <span class="task" id="<%= todo._id %>">
+                        <span class="task">
                             <% if (todo.priority === 1){  %>
                                 <i class="fas fa-radiation-alt  prioHigh"></i>
                             <% } %>
@@ -42,8 +23,9 @@
                             <% if (todo.priority === 5){  %>
                                 <i class="fas fa-couch"></i>
                             <% } %>
-                            <%= todo.item %><i class="fas fa-trash-alt prioHigh float-right"></i>
+                            <%= todo.item %>
                         </span>
+                        <i class="fas fa-trash-alt prioHigh float-right" id="<%= todo._id %>"></i>
                        <p class="description"><%= todo.description %></p> 
                     </li>
                 <% }; %>

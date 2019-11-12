@@ -1,13 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Things To Do</title>
     <link rel="icon" href="/Papirus-Team-Papirus-Apps-Gnome-todo.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheets/todo.css">
     <script src="https://kit.fontawesome.com/4197b7aff2.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <% if(!currentUser){ %>
+        <span class="user">&nbsp;</span>
+        <% } else { %>
+        <span class="nav-item user"><%= currentUser.username %></span>
+        <% } %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <% if(!currentUser){ %>
+                    <p id="login" class="nav-link user">Login</p>
+                    <a id="register" class="nav-link user" href="/register">Register</a>
+                    <% } else { %>
+                    <p id="logout" class="nav-link user">Logout</p>
+                    <% } %>
+                </li>
+            </ul>
+            <% if(error && error.length>0) { %>
+            <div class="user messageError">
+                <%= error %>
+            </div>
+            <% } %>
+            <% if(success && success.length>0) { %>
+            <div class="user messageSuccess">
+                <%= success %>
+            </div>
+            <% } %>
+        </div>
+    </nav>

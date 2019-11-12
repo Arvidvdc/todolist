@@ -18,16 +18,15 @@ router.get("/", middleware.isLoggedIn, (req,res)=>{
 
 // Register routes
 router.get("/register", (req,res)=> {
-    res.render("Register");
+    res.render("register");
 });
 
 router.post("/register", (req,res)=> {
     let newUser = new User({username: req.body.username, email: req.body.email, role: req.body.role});
     User.register(newUser, req.body.password , (err, user)=>{
         if(err) {
-            console.log(err);
             req.flash("error", err.message);
-            return res.render("Register")
+            res.redirect("/register");
         }
         passport.authenticate("local")(req,res, function(){
             req.flash("success", "Welcome " + user.username + " Let's get things done");

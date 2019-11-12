@@ -19,7 +19,6 @@ router.post("/", middleware.isLoggedIn, (req,res)=> {
         if(err){
             req.flash("error", err.message);
         } else {
-            req.flash("success", "New item added.");
             res.redirect("/");
         };
     });
@@ -42,7 +41,6 @@ router.put("/:id", middleware.isLoggedIn, (req,res)=> {
         if(err) {
             req.flash("error", err.message);
         } else {
-            req.flash("success", "Item successfully edited.");
             res.redirect("/");
         };
     });
@@ -65,7 +63,6 @@ router.delete("/:id", middleware.isLoggedIn, (req,res)=> {
         if(err) {
             req.flash("error", err.message);
         } else {
-            req.flash("Success", "YES YES YES item deleted");
             res.redirect("/");
         };
     });

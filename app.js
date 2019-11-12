@@ -33,7 +33,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // Database connection
-mongoose.connect("mongodb://localhost:27017/todo", { useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect("mongodb://85.150.72.244:27017/publicTodo", { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 
 // Filling database
 // seedDB();
@@ -50,9 +50,5 @@ app.use((req,res,next)=>{
 app.use(indexRoutes);
 app.use(todoRoutes);
 
-app.get("/*", (req,res)=>{
-    res.render("404");
-});
-
 // listener
-app.listen(3001, ()=>console.log("ToDo started on port 3001"));
+app.listen(3001, "192.168.1.16", ()=>console.log("ToDo started on port 3001"));

@@ -1,13 +1,24 @@
 # todolist
 Extended things to do list
 
-This todolist adds more functionality to a things to do list. When done, you're able to get your list of things to do from a Mongo database, orderd by severity. It will be possible to add and delete items from the list, but you will be able to adjust severity.
+Besides normal add and delete functionality this ToDo List enables you...
+- Edit tasks
+- Manage tasks per user
+- Manage tasks from desktop and mobile device 
 
-## Stack used
-MEN-stack supported with jQuery and Bootstrap 4.3
+Demo available [here](http://85.150.72.244:3001)
+Use user "Public" with password "password" for a pre-filled task list or register your own user (database will be irregular updated).
 
-## Images
-![image](https://user-images.githubusercontent.com/56016997/68437054-1374ed00-01c0-11ea-9ad7-bf5eba97b0b5.png)
+Enjoy!
 
-finished version
-![image](https://user-images.githubusercontent.com/56016997/68552956-3b14c100-041d-11ea-8787-66c5890dc349.png)
+
+
+## Stack
+MEN-stack supported with jQuery 3.3.1 and Bootstrap 4.3.1
+
+## Special thanks to
+Floris for his feedback.
+All codeGorilla's from bootcamp Groningen 04.
+
+## Image
+![image](https://user-images.githubusercontent.com/56016997/68713895-1ba5a180-059f-11ea-9039-b4b73751e020.png) (Finished product)

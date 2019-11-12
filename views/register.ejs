@@ -3,18 +3,6 @@
     <div class="container">
         <span id="title">REGISTER NEW USER</span><i class="fas fas fa-undo buttonHead float-right"></i>
         <hr>
-        <% if(error && error.length>0) { %>
-            <div class="alert alert-danger" role="alert">
-                <%= error %>
-            </div>
-            <hr>
-        <% } %>
-        <% if(success && success.length>0) { %>
-            <div class="alert alert-success" role="alert">
-                <%= success %>
-            </div>
-            <hr>
-        <% } %>
         <div class="formstyle">
             <form action="/register" method="post">
                 <div class="form-group">

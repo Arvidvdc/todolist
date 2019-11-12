@@ -6,14 +6,19 @@ $(".fa-undo").click(function() {
     window.location.href = "/";
 });
 
-$("ul").on("dblclick", "span", function(){
-    let url = "/" + $(this).attr("id") +"/edit";
+$("ul").on("click", "span", function(){
+    let url = "/" + $(this).next().attr("id") +"/edit";
+    console.log(url);
     window.location.href = url;
 });
 
 $(".fa-trash-alt").click(function() {
-    let url = "/delete/" + $(this).parent().attr("id");
+    let url = "/delete/" + $(this).attr("id");
     window.location.href = url;
+});
+
+$("#login").click(function() {
+    window.location.href = "/login";
 });
 
 $("#logout").click(function() {
