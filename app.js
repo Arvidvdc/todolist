@@ -36,7 +36,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // Database connection
-mongoose.connect("mongodb://85.150.72.244:27017/publicTodo", { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 
 // Filling database
 // seedDB();
