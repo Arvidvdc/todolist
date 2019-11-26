@@ -13,6 +13,9 @@ const   express         = require("express"),
 const   indexRoutes     = require("./routes/index"),
         todoRoutes      = require("./routes/todoitems");
 
+// dotENV
+require('dotenv').config();
+
 // Express variables
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
@@ -51,4 +54,4 @@ app.use(indexRoutes);
 app.use(todoRoutes);
 
 // listener
-app.listen(3001, "192.168.1.16", ()=>console.log("ToDo started on port 3001"));
+app.listen(process.env.PORT, process.env.IP, ()=>console.log("ToDo started on port " + process.env.PORT));
