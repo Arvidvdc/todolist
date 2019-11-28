@@ -6,7 +6,7 @@ Besides normal add and delete functionality this ToDo List enables you...
 - Manage tasks per user
 - Manage tasks from desktop and mobile device 
 
-Demo available [here](http://85.150.72.244:3001)
+Demo available [here](https://sheltered-shelf-52762.herokuapp.com/)
 Use user "Public" with password "password" for a pre-filled task list or register your own user (database will be irregular updated).
 
 Enjoy!
